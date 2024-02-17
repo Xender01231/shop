@@ -4,34 +4,33 @@
 {% block content %}
 <h1 class="text-center ">Каталог</h1>
  
-<div class=" d-flex justify-content-center">
-    {% for product in all_products %}
-
+<div class="d-flex justify-content-center">
     <div class="card shadow-lg  " style="width: 18rem;">
         <h5 class="card-title">              </h5>
         <img src="{{ product.image.url }}" class="card-img-top" alt="...">
         <div class="card-body">
-        <p class="card-text text-center fs-3">{{ product.name }}</p>
+        <p class="card-text text-center fs-3">игровой ноутбук Triton 14</p>
         <div class="d-flex justify-content-center ">
-            <span class="fw-bold fs-3 ">{{ product.price }}р</span>
-            <span class="mb-auto text-danger fs-6 ">-{{ product.discount }}%</span>
+            <span class="fw-bold fs-3 ">{{ product.price }}99р</span>
+            <span class="mb-auto text-danger fs-6 ">{{ product.discount }}-25%</span>
         </div>
 
-            <div class=" d-flex mb-auto justify-content-center">
+            <div class="d-flex mb-auto justify-content-center">
+                <span>На складе {{ product.stock }}</span>
                 {% for i in '11111' %}
                     {% if forloop.counter <= product.rating %}
                         <img src="{% static 'Core/img/star.png' %} " alt="" width="25" height="25">
                     {% else %}
                         <img style="filter: grayscale(1);" src="{% static 'Core/img/star.png' %} " alt="" width="25" height="25">
+                        
                 {% endif %}        
                 {% endfor %}
             </div>
-            
-        <a href="{% url 'product_detail' id=product.id %}" class=" mb-2 mt-3 btn border-secondary text-secondary   d-flex justify-content-center ">Подробнее</a>
+
+        <a href="{% url 'create_order' id=product.id %}" class="btn border-secondary text-secondary   d-flex justify-content-center ">Оформить заказ</a>
         <p class="text-secondary text-center ">Тонкий игровой ноутбук Triton 14 с поддержкой DLSS 3 создан специально для того, чтобы решать все ваши проблемы, связанные с многозадачностью, обеспечивать экстремальную производительность и расширять ваши творческие возможности на каждом шагу.</p>
         </div>
     </div>
-    {% endfor %}
 </div>
 
 {% endblock %}
